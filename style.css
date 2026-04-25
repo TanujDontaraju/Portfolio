@@ -15,11 +15,11 @@ body {
 /* Vertical Side Box */
 .side-box {
     position: fixed;
-    top: 535px; /* Pushed down so the line passes between LinkedIn and GitHub */
+    top: 580px; /* Pushed down slightly further */
     right: 8%; /* Centers perfectly in the right-hand empty space on any screen */
     transform: translateY(-50%); /* Centers the box perfectly vertically */
     width: 70px; /* Adjusted width */
-    height: 300px;
+    height: 360px; /* Increased height to comfortably fit the 5th icon */
     background-color: white;
     border-radius: 15px; /* Gives the box nicely rounded corners */
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 5px 15px rgba(0, 0, 0, 0.1); /* Enhanced 3D shadow effect */
@@ -57,6 +57,10 @@ body {
 
 .side-box a[aria-label="Instagram"]:hover {
     color: #E1306C;
+}
+
+.side-box a[aria-label="Toggle Animation"]:hover {
+    color: #e67e22; /* Matches the theme orange when hovered */
 }
 
 /* Main Header */
@@ -100,6 +104,37 @@ body {
     position: relative;
     z-index: 10000;
     mix-blend-mode: multiply; /* Blends and darkens when overlapping with the hexagons */
+}
+
+/* Resume Button */
+.resume-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    padding: 10px 25px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: white;
+    background-color: #e67e22; /* Matches the text-orange */
+    text-decoration: none;
+    border-radius: 8px;
+    position: relative;
+    z-index: 10000; /* Ensure it stays above the hexagons */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+    overflow: hidden; /* Keeps the JS ripple effect contained within the button */
+}
+
+.resume-btn i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+.resume-btn:hover {
+    background-color: #d35400; /* Slightly darker orange */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(230, 126, 34, 0.4);
 }
 
 /* Header Divider Line */
@@ -165,6 +200,8 @@ body {
     width: 60px; /* Made slightly larger */
     height: auto;
     background: transparent; /* No white background or borders */
+    mix-blend-mode: normal; /* Override any blend modes so it stays clear */
+    border-radius: 8px; /* Optional: adds a nice rounded edge if the image is square */
     transition: transform 0.3s ease;
 }
 
@@ -235,6 +272,50 @@ body {
     padding-left: 20px;
     color: #555;
     font-size: 0.95rem;
+}
+
+/* Experience Brand inside Dropdown */
+.exp-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 0; /* Reduced space between brand and role title */
+}
+
+.exp-logo {
+    width: 60px;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Adjust DIR Lab logo to match Mercor's visual weight */
+.dir-logo {
+    width: 90px;
+}
+
+.exp-brand h3 {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.exp-date {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+/* Project GitHub Link */
+.project-github-link {
+    font-size: 1.4rem;
+    color: #333;
+    margin-left: auto; /* Pushes the icon to the far right */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.project-github-link:hover {
+    color: #e67e22; /* Matches the theme orange */
+    transform: scale(1.1);
 }
 
 .logo {

@@ -217,6 +217,9 @@ function addHexagonBackground() {
                 opacity: 0;
             }
         }
+        .hexagon-container.paused .hexagon {
+            animation-play-state: paused !important;
+        }
     `;
     document.head.appendChild(style);
 
@@ -278,5 +281,25 @@ document.querySelectorAll('.dropdown summary').forEach(summary => {
         }
     });
 });
+
+// Pause/Play Hexagon Animation
+const pausePlayBtn = document.getElementById('pause-play-btn');
+if (pausePlayBtn) {
+    pausePlayBtn.addEventListener('click', () => {
+        const hexContainer = document.querySelector('.hexagon-container');
+        const icon = pausePlayBtn.querySelector('i');
+        if (hexContainer) {
+            hexContainer.classList.toggle('paused');
+            // Switch between pause and play icons
+            if (hexContainer.classList.contains('paused')) {
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+            } else {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+            }
+        }
+    });
+}
 
 console.log('Portfolio animations loaded!');
