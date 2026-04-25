@@ -1,6 +1,8 @@
 # Project
 # Tanuj Dontaraju - Personal Portfolio
 
+**🌐 [Visit the live website here!](https://tanujdontaraju.github.io/Portfolio/)**
+
 My personal portfolio website! I am an AI/ML Engineer studying at the University of Delaware. This sit showcases my coursework, experience, and projects.
 
 ## 🚀 Features
