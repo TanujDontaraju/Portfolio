@@ -220,6 +220,9 @@ function addHexagonBackground() {
         .hexagon-container.paused .hexagon {
             animation-play-state: paused !important;
         }
+        .hexagon-container.reverse .hexagon {
+            animation-direction: reverse !important;
+        }
     `;
     document.head.appendChild(style);
 
@@ -314,6 +317,25 @@ if (darkModeBtn) {
         } else {
             icon.classList.remove('fa-sun');
             icon.classList.add('fa-moon');
+        }
+    });
+}
+
+// Direction Toggle
+const directionBtn = document.getElementById('direction-btn');
+if (directionBtn) {
+    directionBtn.addEventListener('click', () => {
+        const hexContainer = document.querySelector('.hexagon-container');
+        const icon = directionBtn.querySelector('i');
+        if (hexContainer) {
+            hexContainer.classList.toggle('reverse');
+            if (hexContainer.classList.contains('reverse')) {
+                icon.classList.remove('fa-arrow-down');
+                icon.classList.add('fa-arrow-up');
+            } else {
+                icon.classList.remove('fa-arrow-up');
+                icon.classList.add('fa-arrow-down');
+            }
         }
     });
 }

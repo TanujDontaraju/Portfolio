@@ -19,7 +19,7 @@ body {
     right: 8%; /* Centers perfectly in the right-hand empty space on any screen */
     transform: translateY(-50%); /* Centers the box perfectly vertically */
     width: 70px; /* Adjusted width */
-    height: 420px; /* Increased height to comfortably fit 6 icons */
+    height: 480px; /* Increased height to comfortably fit 7 icons */
     background-color: white;
     border-radius: 15px; /* Gives the box nicely rounded corners */
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 5px 15px rgba(0, 0, 0, 0.1); /* Enhanced 3D shadow effect */
@@ -65,6 +65,10 @@ body {
 
 .side-box a[aria-label="Toggle Dark Mode"]:hover {
     color: #bdc3c7; /* Moon silver when hovered in light mode */
+}
+
+.side-box a[aria-label="Toggle Direction"]:hover {
+    color: #2ecc71; /* Green when hovered */
 }
 
 /* Main Header */
@@ -674,6 +678,10 @@ body.dark-mode .side-box a {
 
 body.dark-mode .side-box a[aria-label="Toggle Dark Mode"]:hover {
     color: #f1c40f; /* Sun yellow when hovered in dark mode */
+}
+
+body.dark-mode .side-box a[aria-label="Toggle Direction"]:hover {
+    color: #2ecc71; /* Keep the green hover color in dark mode too */
 }
 
 body.dark-mode .main-heading,
