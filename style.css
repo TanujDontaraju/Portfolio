@@ -15,11 +15,12 @@ body {
 /* Vertical Side Box */
 .side-box {
     position: fixed;
-    top: 580px; /* Pushed down slightly further */
+    top: 50%; /* Centers vertically dynamically based on screen size */
     right: 8%; /* Centers perfectly in the right-hand empty space on any screen */
     transform: translateY(-50%); /* Centers the box perfectly vertically */
     width: 70px; /* Adjusted width */
-    height: 480px; /* Increased height to comfortably fit 7 icons */
+    height: auto; /* Let the height grow automatically */
+    padding: 20px 0; /* Adds spacing at the top and bottom */
     background-color: white;
     border-radius: 15px; /* Gives the box nicely rounded corners */
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 5px 15px rgba(0, 0, 0, 0.1); /* Enhanced 3D shadow effect */
@@ -59,16 +60,87 @@ body {
     color: #E1306C;
 }
 
-.side-box a[aria-label="Toggle Animation"]:hover {
-    color: #e67e22; /* Matches the theme orange when hovered */
-}
-
 .side-box a[aria-label="Toggle Dark Mode"]:hover {
     color: #bdc3c7; /* Moon silver when hovered in light mode */
 }
 
-.side-box a[aria-label="Toggle Direction"]:hover {
-    color: #2ecc71; /* Green when hovered */
+.side-box a[aria-label="Toggle Animation"]:hover .fa-pause {
+    color: #8e44ad; /* Deep Purple for Pause */
+}
+
+.side-box a[aria-label="Toggle Animation"]:hover .fa-play {
+    color: #2ecc71; /* Bright Green for Play */
+}
+
+.side-box a[aria-label="Toggle Direction"]:hover .fa-arrow-down {
+    color: #00cec9; /* Cyan for Down Arrow */
+}
+
+.side-box a[aria-label="Toggle Direction"]:hover .fa-arrow-up {
+    color: #CFF800; /* Neon Yellow for Up Arrow */
+}
+
+/* Folder Widget */
+.folder-widget {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.folder-trigger {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 3px;
+    background-color: #f1f1f1;
+    padding: 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 45px;
+    height: 45px;
+    place-items: center;
+}
+
+.folder-trigger:hover {
+    transform: scale(1.1);
+    background-color: #e67e22; /* Turns orange on hover */
+}
+
+.folder-trigger:hover .mini-icon {
+    color: #000; /* Mini icons turn black on hover */
+}
+
+.folder-trigger .mini-icon {
+    font-size: 11px;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.folder-content {
+    position: absolute;
+    right: 70px; /* Pop out to the left of the side box */
+    top: 50%;
+    transform: translateY(-50%) scale(0.9) translateX(10px);
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10001;
+}
+
+.folder-content.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) scale(1) translateX(0);
 }
 
 /* Main Header */
@@ -680,8 +752,25 @@ body.dark-mode .side-box a[aria-label="Toggle Dark Mode"]:hover {
     color: #f1c40f; /* Sun yellow when hovered in dark mode */
 }
 
-body.dark-mode .side-box a[aria-label="Toggle Direction"]:hover {
-    color: #2ecc71; /* Keep the green hover color in dark mode too */
+body.dark-mode .folder-trigger {
+    background-color: #333;
+}
+
+body.dark-mode .folder-trigger:hover {
+    background-color: #e67e22; /* Turns orange on hover in dark mode too */
+}
+
+body.dark-mode .folder-trigger:hover .mini-icon {
+    color: #000; /* Mini icons turn black on hover in dark mode too */
+}
+
+body.dark-mode .folder-trigger .mini-icon {
+    color: #ccc;
+}
+
+body.dark-mode .folder-content {
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
 body.dark-mode .main-heading,

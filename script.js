@@ -291,15 +291,18 @@ if (pausePlayBtn) {
     pausePlayBtn.addEventListener('click', () => {
         const hexContainer = document.querySelector('.hexagon-container');
         const icon = pausePlayBtn.querySelector('i');
+        const miniIcon = document.getElementById('mini-pause-play');
         if (hexContainer) {
             hexContainer.classList.toggle('paused');
             // Switch between pause and play icons
             if (hexContainer.classList.contains('paused')) {
                 icon.classList.remove('fa-pause');
                 icon.classList.add('fa-play');
+                if (miniIcon) { miniIcon.classList.remove('fa-pause'); miniIcon.classList.add('fa-play'); }
             } else {
                 icon.classList.remove('fa-play');
                 icon.classList.add('fa-pause');
+                if (miniIcon) { miniIcon.classList.remove('fa-play'); miniIcon.classList.add('fa-pause'); }
             }
         }
     });
@@ -311,12 +314,15 @@ if (darkModeBtn) {
     darkModeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         const icon = darkModeBtn.querySelector('i');
+        const miniIcon = document.getElementById('mini-dark-mode');
         if (document.body.classList.contains('dark-mode')) {
             icon.classList.remove('fa-moon');
             icon.classList.add('fa-sun');
+            if (miniIcon) { miniIcon.classList.remove('fa-moon'); miniIcon.classList.add('fa-sun'); }
         } else {
             icon.classList.remove('fa-sun');
             icon.classList.add('fa-moon');
+            if (miniIcon) { miniIcon.classList.remove('fa-sun'); miniIcon.classList.add('fa-moon'); }
         }
     });
 }
@@ -327,17 +333,41 @@ if (directionBtn) {
     directionBtn.addEventListener('click', () => {
         const hexContainer = document.querySelector('.hexagon-container');
         const icon = directionBtn.querySelector('i');
+        const miniIcon = document.getElementById('mini-direction');
         if (hexContainer) {
             hexContainer.classList.toggle('reverse');
             if (hexContainer.classList.contains('reverse')) {
                 icon.classList.remove('fa-arrow-down');
                 icon.classList.add('fa-arrow-up');
+                if (miniIcon) { miniIcon.classList.remove('fa-arrow-down'); miniIcon.classList.add('fa-arrow-up'); }
             } else {
                 icon.classList.remove('fa-arrow-up');
                 icon.classList.add('fa-arrow-down');
+                if (miniIcon) { miniIcon.classList.remove('fa-arrow-up'); miniIcon.classList.add('fa-arrow-down'); }
             }
         }
     });
 }
+
+// Folder Widget Toggle
+const folderTrigger = document.getElementById('folder-trigger');
+if (folderTrigger) {
+    folderTrigger.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent clicks from immediately bubbling up and closing it
+        const folderContent = document.getElementById('folder-content');
+        if (folderContent) {
+            folderContent.classList.toggle('show');
+        }
+    });
+}
+
+// Close folder when clicking outside of it
+document.addEventListener('click', (e) => {
+    const folderContent = document.getElementById('folder-content');
+    const folderWidget = document.querySelector('.folder-widget');
+    if (folderContent && folderContent.classList.contains('show') && folderWidget && !folderWidget.contains(e.target)) {
+        folderContent.classList.remove('show');
+    }
+});
 
 console.log('Portfolio animations loaded!');
