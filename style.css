@@ -197,7 +197,7 @@ body {
 }
 
 .ud-logo-header {
-    width: 60px; /* Made slightly larger */
+    width: 85px; /* Increased size for better visibility */
     height: auto;
     background: transparent; /* No white background or borders */
     mix-blend-mode: normal; /* Override any blend modes so it stays clear */
