@@ -888,25 +888,63 @@ body.dark-mode .dir-logo {
     }
 
     .main-header {
-        padding-top: 150px; /* Reduce top padding on smaller screens */
+        padding-top: 100px; /* Reduce top padding on smaller screens */
         width: 90%; /* Use more of the screen width */
         text-align: center; /* Center the header text */
     }
 
     .main-heading {
-        font-size: 3rem; /* Decrease font size for the main heading */
+        font-size: 2.2rem; /* Decrease font size for the main heading */
         margin-left: 0; /* Remove the negative margin to allow centering */
     }
 
     .sub-heading {
-        font-size: 1.5rem; /* Decrease font size for the sub-heading */
+        font-size: 1.1rem; /* Decrease font size for the sub-heading */
     }
 
     .location-heading {
-        font-size: 1.2rem; /* Decrease font size for the location */
+        font-size: 0.9rem; /* Decrease font size for the location */
+    }
+
+    .resume-btn {
+        font-size: 0.9rem;
+        padding: 8px 20px;
     }
 
     .side-box {
         display: none; /* Hide the side box on mobile to prevent overlap */
+    }
+}
+
+/* Extra small devices (320px - 480px) */
+@media (max-width: 480px) {
+    .main-header {
+        padding-top: 80px;
+        width: 95%;
+    }
+
+    .main-heading {
+        font-size: 1.8rem;
+    }
+
+    .sub-heading {
+        font-size: 0.95rem;
+    }
+
+    .location-heading {
+        font-size: 0.85rem;
+    }
+
+    .resume-btn {
+        font-size: 0.85rem;
+        padding: 7px 18px;
+    }
+
+    .header-line {
+        width: 95%;
+    }
+
+    .dropdown-section {
+        width: 95%;
     }
 }
