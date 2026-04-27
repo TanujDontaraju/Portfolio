@@ -240,10 +240,10 @@ function addHexagonBackground() {
     style.textContent = `
         .hexagon-container {
             position: fixed;
-            top: 0;
+            top: -30vh;
             left: 0;
             width: 100vw;
-            height: 100vh;
+            height: 130vh;
             z-index: 9999; /* Boost extremely high to guarantee it shows above all sections */
             overflow: hidden;
             pointer-events: none;
@@ -265,7 +265,7 @@ function addHexagonBackground() {
                 opacity: 1;
             }
             100% {
-                transform: translateY(-120vh) rotate(360deg);
+                transform: translateY(-150vh) rotate(360deg);
                 opacity: 0;
             }
         }

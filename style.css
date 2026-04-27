@@ -935,6 +935,40 @@ body.dark-mode .dir-logo {
     .dir-logo { width: 150px; }
 }
 
+/* Mobile & Tablet Shared Adjustments (1024px and below) */
+@media (max-width: 1024px) {
+    /* Remove hover scaling for touch devices */
+    .side-box a:hover {
+        transform: none !important;
+    }
+    
+    /* Permanently apply brand colors to social icons */
+    .side-box a[aria-label="LinkedIn"] { color: #0A66C2 !important; }
+    .side-box a[aria-label="Email"] { color: #EA4335 !important; }
+    .side-box a[aria-label="Instagram"] { color: #E1306C !important; }
+
+    /* GitHub gets its brand color in light mode, but white in dark mode for visibility */
+    .side-box a[aria-label="GitHub"] { color: #171515 !important; }
+    body.dark-mode .side-box a[aria-label="GitHub"] { color: #f1f1f1 !important; }
+
+    /* Remove folder trigger hover effects to prevent sticky touch states */
+    .folder-trigger:hover {
+        transform: none !important;
+        background-color: #f1f1f1 !important;
+    }
+    .folder-trigger:hover .mini-icon {
+        color: #555 !important;
+    }
+
+    /* Dark mode folder trigger hover reset */
+    body.dark-mode .folder-trigger:hover {
+        background-color: #333 !important;
+    }
+    body.dark-mode .folder-trigger:hover .mini-icon {
+        color: #ccc !important;
+    }
+}
+
 /* Half-Tab/Medium screens (650px to 1024px) */
 @media (max-width: 1024px) and (min-width: 650px) {
     .main-header {
@@ -950,28 +984,41 @@ body.dark-mode .dir-logo {
     }
 
     .side-box {
-        width: 55px;
-        padding: 15px 0;
-        gap: 15px;
-        right: 4%;
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: auto;
+        padding: 18px 45px;
+        gap: 40px;
+        flex-direction: row;
     }
 
     .side-box a {
-        font-size: 24px;
+        font-size: 30px;
     }
 
     .folder-trigger {
-        width: 35px;
-        height: 35px;
-        padding: 5px;
+        width: 42px;
+        height: 42px;
+        padding: 6px;
     }
 
     .folder-trigger .mini-icon {
-        font-size: 9px;
+        font-size: 10px;
     }
 
     .folder-content {
-        right: 60px;
+        top: auto;
+        bottom: 95px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%) scale(0.9) translateY(10px);
+    }
+
+    .folder-content.show {
+        transform: translateX(-50%) scale(1) translateY(0);
     }
 
     .dropdown summary {
@@ -992,6 +1039,10 @@ body.dark-mode .dir-logo {
 
     .course-category ul, .exp-date {
         font-size: 1.3rem;
+    }
+
+    .dropdown-section {
+        margin-bottom: 80px;
     }
 }
 
@@ -1046,28 +1097,41 @@ body.dark-mode .dir-logo {
 
     .side-box {
         display: flex; /* Keep the vertical side box visible on split screen */
-        width: 45px;
-        padding: 10px 0;
-        gap: 15px;
-        right: 3%;
+        top: auto;
+        bottom: 15px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: auto;
+        padding: 15px 35px;
+        gap: 30px;
+        flex-direction: row;
     }
 
     .side-box a {
-        font-size: 20px;
+        font-size: 26px;
     }
 
     .folder-trigger {
-        width: 30px;
-        height: 30px;
-        padding: 4px;
+        width: 38px;
+        height: 38px;
+        padding: 5px;
     }
 
     .folder-trigger .mini-icon {
-        font-size: 8px;
+        font-size: 9px;
     }
 
     .folder-content {
-        right: 55px;
+        top: auto;
+        bottom: 85px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%) scale(0.9) translateY(10px);
+    }
+
+    .folder-content.show {
+        transform: translateX(-50%) scale(1) translateY(0);
     }
 
     /* Reduce image sizes on mobile */
@@ -1102,6 +1166,10 @@ body.dark-mode .dir-logo {
     .course-category ul, .exp-date {
         font-size: 1.05rem;
     }
+
+    .dropdown-section {
+        margin-bottom: 80px;
+    }
 }
 
 /* Extra small devices (320px - 480px) */
@@ -1117,6 +1185,7 @@ body.dark-mode .dir-logo {
 
     .sub-heading {
         font-size: 0.95rem;
+        margin-top: 0;
     }
 
     .location-heading {
@@ -1126,6 +1195,7 @@ body.dark-mode .dir-logo {
     .resume-btn {
         font-size: 0.85rem;
         padding: 7px 18px;
+        margin-top: 15px;
     }
 
     .header-line {
@@ -1138,28 +1208,41 @@ body.dark-mode .dir-logo {
 
     .side-box {
         display: flex; /* Keep the vertical side box visible even on very small screens */
-        width: 40px;
-        padding: 10px 0;
-        gap: 12px;
-        right: 2%;
+        top: auto;
+        bottom: 15px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: auto;
+        padding: 14px 25px;
+        gap: 22px;
+        flex-direction: row;
     }
 
     .side-box a {
-        font-size: 18px;
+        font-size: 24px;
     }
 
     .folder-trigger {
-        width: 28px;
-        height: 28px;
-        padding: 4px;
+        width: 34px;
+        height: 34px;
+        padding: 5px;
     }
 
     .folder-trigger .mini-icon {
-        font-size: 7px;
+        font-size: 8px;
     }
 
     .folder-content {
-        right: 50px;
+        top: auto;
+        bottom: 75px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%) scale(0.9) translateY(10px);
+    }
+
+    .folder-content.show {
+        transform: translateX(-50%) scale(1) translateY(0);
     }
 
     /* Reduce image sizes on small mobile */
@@ -1173,5 +1256,9 @@ body.dark-mode .dir-logo {
 
     .dir-logo {
         width: 55px;
+    }
+
+    .dropdown-section {
+        margin-bottom: 70px;
     }
 }
