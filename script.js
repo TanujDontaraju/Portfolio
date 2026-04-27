@@ -230,7 +230,16 @@ function addHexagonBackground() {
     container.className = 'hexagon-container';
     document.body.prepend(container);
 
-    for (let i = 0; i < 150; i++) {
+    // Determine number of hexagons based on screen size
+    let hexagonCount = 150;
+    if (window.innerWidth <= 768) {
+        hexagonCount = 50; // Reduced for tablets and below
+    }
+    if (window.innerWidth <= 480) {
+        hexagonCount = 25; // Further reduced for mobile
+    }
+
+    for (let i = 0; i < hexagonCount; i++) {
         const hex = document.createElement('div');
         hex.className = 'hexagon';
 
@@ -308,6 +317,25 @@ if (pausePlayBtn) {
     });
 }
 
+// Mobile Pause/Play Button
+const mobilePausePlayBtn = document.getElementById('mobile-pause-play-btn');
+if (mobilePausePlayBtn) {
+    mobilePausePlayBtn.addEventListener('click', () => {
+        const hexContainer = document.querySelector('.hexagon-container');
+        const icon = mobilePausePlayBtn.querySelector('i');
+        if (hexContainer) {
+            hexContainer.classList.toggle('paused');
+            if (hexContainer.classList.contains('paused')) {
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+            } else {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+            }
+        }
+    });
+}
+
 // Dark Mode Toggle
 const darkModeBtn = document.getElementById('dark-mode-btn');
 if (darkModeBtn) {
@@ -323,6 +351,22 @@ if (darkModeBtn) {
             icon.classList.remove('fa-sun');
             icon.classList.add('fa-moon');
             if (miniIcon) { miniIcon.classList.remove('fa-sun'); miniIcon.classList.add('fa-moon'); }
+        }
+    });
+}
+
+// Mobile Dark Mode Button
+const mobileDarkModeBtn = document.getElementById('mobile-dark-mode-btn');
+if (mobileDarkModeBtn) {
+    mobileDarkModeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const icon = mobileDarkModeBtn.querySelector('i');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
         }
     });
 }
@@ -349,6 +393,25 @@ if (directionBtn) {
     });
 }
 
+// Mobile Direction Toggle
+const mobileDirectionBtn = document.getElementById('mobile-direction-btn');
+if (mobileDirectionBtn) {
+    mobileDirectionBtn.addEventListener('click', () => {
+        const hexContainer = document.querySelector('.hexagon-container');
+        const icon = mobileDirectionBtn.querySelector('i');
+        if (hexContainer) {
+            hexContainer.classList.toggle('reverse');
+            if (hexContainer.classList.contains('reverse')) {
+                icon.classList.remove('fa-arrow-down');
+                icon.classList.add('fa-arrow-up');
+            } else {
+                icon.classList.remove('fa-arrow-up');
+                icon.classList.add('fa-arrow-down');
+            }
+        }
+    });
+}
+
 // Folder Widget Toggle
 const folderTrigger = document.getElementById('folder-trigger');
 if (folderTrigger) {
@@ -361,12 +424,60 @@ if (folderTrigger) {
     });
 }
 
+// Mobile Animations Folder Toggle
+const mobileAnimationsTrigger = document.getElementById('mobile-animations-trigger');
+if (mobileAnimationsTrigger) {
+    mobileAnimationsTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const animationsContent = document.getElementById('mobile-animations-content');
+        const socialContent = document.getElementById('mobile-social-content');
+        if (animationsContent) {
+            animationsContent.classList.toggle('show');
+            // Close social if it's open
+            if (socialContent && socialContent.classList.contains('show')) {
+                socialContent.classList.remove('show');
+            }
+        }
+    });
+}
+
+// Mobile Social Folder Toggle
+const mobileSocialTrigger = document.getElementById('mobile-social-trigger');
+if (mobileSocialTrigger) {
+    mobileSocialTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const socialContent = document.getElementById('mobile-social-content');
+        const animationsContent = document.getElementById('mobile-animations-content');
+        if (socialContent) {
+            socialContent.classList.toggle('show');
+            // Close animations if it's open
+            if (animationsContent && animationsContent.classList.contains('show')) {
+                animationsContent.classList.remove('show');
+            }
+        }
+    });
+}
+
 // Close folder when clicking outside of it
 document.addEventListener('click', (e) => {
     const folderContent = document.getElementById('folder-content');
     const folderWidget = document.querySelector('.folder-widget');
     if (folderContent && folderContent.classList.contains('show') && folderWidget && !folderWidget.contains(e.target)) {
         folderContent.classList.remove('show');
+    }
+
+    // Close mobile folders when clicking outside
+    const mobileAnimationsContent = document.getElementById('mobile-animations-content');
+    const mobileSocialContent = document.getElementById('mobile-social-content');
+    const mobileBottomBar = document.querySelector('.mobile-bottom-bar');
+    
+    if (mobileBottomBar && !mobileBottomBar.contains(e.target)) {
+        if (mobileAnimationsContent && mobileAnimationsContent.classList.contains('show')) {
+            mobileAnimationsContent.classList.remove('show');
+        }
+        if (mobileSocialContent && mobileSocialContent.classList.contains('show')) {
+            mobileSocialContent.classList.remove('show');
+        }
     }
 });
 
