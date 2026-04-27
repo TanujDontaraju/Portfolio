@@ -868,14 +868,40 @@ body.dark-mode .dir-logo {
     left: 50%;
     transform: translateX(-50%);
     flex-direction: row;
-    gap: 15px;
+    gap: 20px;
     align-items: center;
     justify-content: center;
     z-index: 9999;
     background-color: white;
-    padding: 12px 20px;
+    padding: 15px 25px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-bottom-bar a {
+    font-size: 28px;
+    color: #333;
+    text-decoration: none;
+    transition: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-bottom-bar a[aria-label="LinkedIn"] {
+    color: #0A66C2;
+}
+
+.mobile-bottom-bar a[aria-label="GitHub"] {
+    color: #171515;
+}
+
+.mobile-bottom-bar a[aria-label="Email"] {
+    color: #EA4335;
+}
+
+.mobile-bottom-bar a[aria-label="Instagram"] {
+    color: #E1306C;
 }
 
 .mobile-folder-widget {
@@ -937,7 +963,99 @@ body.dark-mode .dir-logo {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+/* Large Desktop (1025px+): Full side bar, all animations */
+/* Medium/Half-Tab View (769px - 1024px): Bottom bar with all widgets inline, full animations */
+/* Tablet/Mobile (481px - 768px): Bottom bar with folder dropdowns, reduced animations */
+/* Small Mobile (320px - 480px): Bottom bar with folder dropdowns, no animations */
+
+/* Medium screens - Half tab view (769px to 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .main-header {
+        width: 85%;
+    }
+
+    .header-line {
+        width: 85%;
+    }
+
+    .dropdown-section {
+        width: 85%;
+    }
+
+    .side-box {
+        display: none;
+    }
+
+    .mobile-bottom-bar {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding: 12px 30px;
+        bottom: 20px;
+    }
+
+    .mobile-folder-widget {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+
+    /* Make folder triggers visible and horizontal for half-tab */
+    .mobile-folder-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f1f1f1;
+        padding: 12px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 20px;
+        color: #555;
+    }
+
+    .mobile-folder-content {
+        position: fixed;
+        bottom: 80px;
+        left: auto;
+        right: 30px;
+        transform: translateX(0) scale(0.9) translateY(10px);
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        padding: 15px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 10002;
+        width: auto;
+        max-height: none;
+        min-width: auto;
+    }
+
+    .mobile-folder-content.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0) scale(1) translateY(0);
+    }
+
+    .mobile-folder-content a {
+        font-size: 24px;
+        color: #333;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background-color: #f9f9f9;
+        width: auto;
+    }
+}
+
+/* Tablet and smaller (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
     .hero h1 {
         font-size: 2.5rem;
     }
@@ -994,6 +1112,47 @@ body.dark-mode .dir-logo {
     .mobile-bottom-bar {
         display: flex; /* Show the mobile bottom bar */
     }
+
+    /* Reduce image sizes on mobile */
+    .ud-logo-header {
+        width: 60px;
+        margin-right: -5px; /* Move UD logo more to the left */
+    }
+
+    .exp-logo {
+        width: 45px;
+    }
+
+    .dir-logo {
+        width: 65px;
+    }
+
+    /* Mobile folder content styling for tablet */
+    .mobile-folder-content {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%) scale(0.9) translateY(10px);
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 10002;
+        max-height: 60vh;
+        overflow-y: auto;
+        min-width: 120px;
+    }
+
+    .mobile-folder-content.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) scale(1) translateY(0);
+    }
 }
 
 /* Extra small devices (320px - 480px) */
@@ -1028,9 +1187,50 @@ body.dark-mode .dir-logo {
         width: 95%;
     }
 
-    /* Disable all hover effects and animations on mobile to improve performance */
+    /* Reduce image sizes on small mobile */
+    .ud-logo-header {
+        width: 50px;
+        margin-right: -8px; /* Move UD logo more to the left */
+    }
+
+    .exp-logo {
+        width: 40px;
+    }
+
+    .dir-logo {
+        width: 55px;
+    }
+
+    /* Disable all hover effects and animations on very small mobile to improve performance */
     * {
         transition: none !important;
         animation: none !important;
+    }
+
+    /* Mobile folder content styling for small mobile */
+    .mobile-folder-content {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%) scale(0.9) translateY(10px);
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 10002;
+        max-height: 60vh;
+        overflow-y: auto;
+        min-width: 120px;
+    }
+
+    .mobile-folder-content.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) scale(1) translateY(0);
     }
 }
