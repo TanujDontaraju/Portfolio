@@ -886,4 +886,27 @@ body.dark-mode .dir-logo {
     section h2 {
         font-size: 2rem;
     }
+
+    .main-header {
+        padding-top: 150px; /* Reduce top padding on smaller screens */
+        width: 90%; /* Use more of the screen width */
+        text-align: center; /* Center the header text */
+    }
+
+    .main-heading {
+        font-size: 3rem; /* Decrease font size for the main heading */
+        margin-left: 0; /* Remove the negative margin to allow centering */
+    }
+
+    .sub-heading {
+        font-size: 1.5rem; /* Decrease font size for the sub-heading */
+    }
+
+    .location-heading {
+        font-size: 1.2rem; /* Decrease font size for the location */
+    }
+
+    .side-box {
+        display: none; /* Hide the side box on mobile to prevent overlap */
+    }
 }
