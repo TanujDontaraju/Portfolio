@@ -182,13 +182,55 @@ function addFloatingAnimation() {
 
 addFloatingAnimation();
 
+// Helper to create a single hexagon
+function createHexagon() {
+    const hex = document.createElement('div');
+    hex.className = 'hexagon';
+
+    const size = Math.random() * 60 + 20; // Random size between 20px and 80px
+    const left = Math.random() * 100; // Random horizontal position
+    const duration = Math.random() * 15 + 10; // Random speed between 10s and 25s
+    const delay = Math.random() * 20;
+
+    hex.style.width = `${size}px`;
+    hex.style.height = `${size * 1.15}px`; // True hexagon height ratio
+    hex.style.left = `${left}%`;
+    hex.style.animationDuration = `${duration}s`;
+    hex.style.animationDelay = `-${delay}s`; // Negative delay so some start already on screen
+    
+    return hex;
+}
+
+// Helper to dynamically adjust hexagon count
+function updateHexagonCount() {
+    const container = document.querySelector('.hexagon-container');
+    if (!container) return;
+
+    let targetCount = 150;
+    if (window.innerWidth <= 1024) targetCount = 100; // Reduced for smaller desktop/tablet landscape
+    if (window.innerWidth <= 768) targetCount = 50;  // Reduced for tablets and below
+    if (window.innerWidth <= 480) targetCount = 0;   // No hexagons for mobile
+
+    const currentHexagons = container.querySelectorAll('.hexagon');
+    const currentCount = currentHexagons.length;
+
+    if (currentCount < targetCount) {
+        // Instantly add more hexagons
+        for (let i = 0; i < (targetCount - currentCount); i++) {
+            container.appendChild(createHexagon());
+        }
+    } else if (currentCount > targetCount) {
+        // Instantly remove extra hexagons
+        for (let i = 0; i < (currentCount - targetCount); i++) {
+            if (currentHexagons[i]) {
+                container.removeChild(currentHexagons[i]);
+            }
+        }
+    }
+}
+
 // Hexagon background animation
 function addHexagonBackground() {
-    // Don't add hexagons on mobile (480px and below)
-    if (window.innerWidth <= 480) {
-        return; // Exit early, no hexagons for mobile
-    }
-
     const style = document.createElement('style');
     style.textContent = `
         .hexagon-container {
@@ -235,35 +277,16 @@ function addHexagonBackground() {
     container.className = 'hexagon-container';
     document.body.prepend(container);
 
-    // Determine number of hexagons based on screen size
-    let hexagonCount = 150;
-    if (window.innerWidth <= 1024) {
-        hexagonCount = 100; // Reduced for smaller desktop/tablet landscape
-    }
-    if (window.innerWidth <= 768) {
-        hexagonCount = 50; // Reduced for tablets and below
-    }
-    if (window.innerWidth <= 480) {
-        hexagonCount = 25; // Further reduced for mobile
-    }
+    // Initial population based on current screen size
+    updateHexagonCount();
 
-    for (let i = 0; i < hexagonCount; i++) {
-        const hex = document.createElement('div');
-        hex.className = 'hexagon';
-
-        const size = Math.random() * 60 + 20; // Random size between 20px and 80px
-        const left = Math.random() * 100; // Random horizontal position
-        const duration = Math.random() * 15 + 10; // Random speed between 10s and 25s
-        const delay = Math.random() * 20;
-
-        hex.style.width = `${size}px`;
-        hex.style.height = `${size * 1.15}px`; // True hexagon height ratio
-        hex.style.left = `${left}%`;
-        hex.style.animationDuration = `${duration}s`;
-        hex.style.animationDelay = `-${delay}s`; // Negative delay so some start already on screen
-
-        container.appendChild(hex);
-    }
+    // Adjust counts instantly when the window is resized
+    // A tiny timeout (debounce) ensures smooth performance during drag resizing
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateHexagonCount, 50); // fast 50ms check
+    });
 }
 
 // Ensure the page is ready before adding elements to the body
