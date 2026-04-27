@@ -8,15 +8,15 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: #333;
-    background: white;
+    background: #f4f4f4;
     min-height: 100vh;
 }
 
 /* Vertical Side Box */
 .side-box {
     position: fixed;
-    top: 50%; /* Centers vertically dynamically based on screen size */
-    right: 8%; /* Centers perfectly in the right-hand empty space on any screen */
+    top: 60%; /* Pushed down slightly from the vertical center */
+    right: 4%; /* Pushed closer to the right edge */
     transform: translateY(-50%); /* Centers the box perfectly vertically */
     width: 70px; /* Adjusted width */
     height: auto; /* Let the height grow automatically */
@@ -145,10 +145,10 @@ body {
 
 /* Main Header */
 .main-header {
-    padding: 280px 0 15px 0; /* Reduced bottom padding to bring the line closer to the text */
-    text-align: left;
+    padding: 100px 0 15px 0; /* Further reduced top padding to fit more content on screen */
+    text-align: center;
     width: 70%; /* Establishes a unified column with the line */
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto; /* Centers the column on the screen */
 }
 
@@ -158,7 +158,6 @@ body {
     color: #333;
     position: relative;
     z-index: 10000; /* Ensures the text is clearly legible above the hexagons */
-    margin-left: -15px; /* Increased negative margin to forcefully pull it left */
     mix-blend-mode: multiply; /* Blends and darkens when overlapping with the hexagons */
 }
 
@@ -223,7 +222,7 @@ body {
     border-top: 3px solid #ccc; /* Made significantly lighter */
     margin: 0 auto 40px auto; /* Centered with a gap underneath */
     width: 70%; /* Made even wider */
-    max-width: 900px;
+    max-width: 1000px;
     position: relative;
     z-index: 10000; /* Ensures it sits clearly above the background */
 }
@@ -231,7 +230,7 @@ body {
 /* Dropdown Sections */
 .dropdown-section {
     width: 70%; /* Perfectly matches the header and line widths */
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto; /* Fully centers the sections horizontally */
     position: relative;
     z-index: 10000;
@@ -270,10 +269,17 @@ body {
     transition: color 0.2s ease;
 }
 
-.summary-brand {
+.ud-header {
     display: flex;
-    align-items: center;
-    gap: 15px; /* Space between the logo and the text */
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.ud-title {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 10px;
 }
 
 .ud-logo-header {
@@ -363,7 +369,8 @@ body {
 }
 
 .exp-logo {
-    width: 60px;
+    width: 50px; /* Slightly minimized to better match the visual height of DIR Lab */
+    margin-left: 10px; /* Pushed slightly to the right */
     height: auto;
     border-radius: 8px;
 }
@@ -371,6 +378,7 @@ body {
 /* Adjust DIR Lab logo to match Mercor's visual weight */
 .dir-logo {
     width: 90px;
+    margin-left: 0; /* Prevents the DIR Lab logo from also moving right */
 }
 
 .exp-brand h3 {
@@ -787,6 +795,7 @@ body.dark-mode .header-line {
 body.dark-mode .dropdown-subtitle,
 body.dark-mode .course-category h4,
 body.dark-mode .exp-brand h3,
+body.dark-mode .ud-title,
 body.dark-mode .dropdown-icon,
 body.dark-mode .project-github-link {
     color: #ffffff;
@@ -866,6 +875,66 @@ body.dark-mode .dir-logo {
 /* Tablet (481px - 649px): Bottom bar with social only, reduced animations */
 /* Small Mobile (320px - 480px): Bottom bar with social only, no animations */
 
+/* Large Monitors and Standard Desktop (1440px+) */
+@media (min-width: 1440px) {
+    .main-header, .header-line, .dropdown-section {
+        max-width: 1200px;
+    }
+    .main-heading { font-size: 6rem; }
+    .sub-heading { font-size: 2.5rem; }
+    .location-heading { font-size: 1.8rem; }
+}
+
+/* Full HD, 4K TVs, and Ultrawide Monitors (1920px+) */
+@media (min-width: 1920px) {
+    .main-header, .header-line, .dropdown-section {
+        max-width: 1600px;
+    }
+    .main-heading { font-size: 7.5rem; }
+    .sub-heading { font-size: 3rem; margin-top: -15px; }
+    .location-heading { font-size: 2.2rem; margin-top: 10px; }
+    .resume-btn { font-size: 1.3rem; padding: 12px 30px; }
+    
+    .side-box { width: 90px; gap: 30px; right: 6%; padding: 30px 0; }
+    .side-box a { font-size: 42px; }
+    .folder-trigger { width: 55px; height: 55px; padding: 10px; }
+    .folder-trigger .mini-icon { font-size: 14px; }
+    .folder-content { right: 90px; }
+    
+    .dropdown summary { font-size: 1.4rem; padding: 15px 20px; }
+    .dropdown-subtitle { font-size: 1rem; }
+    .course-category h4, .exp-brand h3 { font-size: 1.5rem; }
+    .course-category ul, .exp-date { font-size: 1.2rem; }
+    .ud-logo-header { width: 110px; }
+    .exp-logo { width: 65px; }
+    .dir-logo { width: 120px; }
+}
+
+/* Super Ultrawide Monitors, Projectors, and 8K Screens (2560px+) */
+@media (min-width: 2560px) {
+    .main-header, .header-line, .dropdown-section {
+        max-width: 2200px;
+    }
+    .main-heading { font-size: 9rem; }
+    .sub-heading { font-size: 4rem; margin-top: -20px; }
+    .location-heading { font-size: 3rem; margin-top: 15px; }
+    .resume-btn { font-size: 1.6rem; padding: 15px 40px; }
+    
+    .side-box { width: 110px; gap: 40px; right: 8%; padding: 40px 0; }
+    .side-box a { font-size: 55px; }
+    .folder-trigger { width: 70px; height: 70px; padding: 12px; }
+    .folder-trigger .mini-icon { font-size: 18px; }
+    .folder-content { right: 110px; padding: 25px; gap: 25px; }
+    
+    .dropdown summary { font-size: 1.8rem; padding: 20px 25px; }
+    .dropdown-subtitle { font-size: 1.3rem; }
+    .course-category h4, .exp-brand h3 { font-size: 2rem; }
+    .course-category ul, .exp-date { font-size: 1.5rem; }
+    .ud-logo-header { width: 140px; }
+    .exp-logo { width: 80px; }
+    .dir-logo { width: 150px; }
+}
+
 /* Half-Tab/Medium screens (650px to 1024px) */
 @media (max-width: 1024px) and (min-width: 650px) {
     .main-header {
@@ -904,6 +973,26 @@ body.dark-mode .dir-logo {
     .folder-content {
         right: 60px;
     }
+
+    .dropdown summary {
+        font-size: 1.7rem;
+    }
+
+    .dropdown-icon {
+        font-size: 1.8rem;
+    }
+
+    .ud-title, .exp-brand h3 {
+        font-size: 1.7rem;
+    }
+
+    .course-category h4 {
+        font-size: 1.4rem;
+    }
+
+    .course-category ul, .exp-date {
+        font-size: 1.3rem;
+    }
 }
 
 /* Tablet (481px - 649px) */
@@ -936,12 +1025,10 @@ body.dark-mode .dir-logo {
     .main-header {
         padding-top: 100px; /* Reduce top padding on smaller screens */
         width: 90%; /* Use more of the screen width */
-        text-align: center; /* Center the header text */
     }
 
     .main-heading {
         font-size: 2.2rem; /* Decrease font size for the main heading */
-        margin-left: 0; /* Remove the negative margin to allow centering */
     }
 
     .sub-heading {
@@ -986,15 +1073,34 @@ body.dark-mode .dir-logo {
     /* Reduce image sizes on mobile */
     .ud-logo-header {
         width: 60px;
-        margin-right: -5px; /* Move UD logo more to the left */
     }
 
     .exp-logo {
-        width: 45px;
+        width: 38px;
     }
 
     .dir-logo {
         width: 65px;
+    }
+
+    .dropdown summary {
+        font-size: 1.3rem;
+    }
+
+    .dropdown-icon {
+        font-size: 1.4rem;
+    }
+
+    .ud-title, .exp-brand h3 {
+        font-size: 1.4rem;
+    }
+
+    .course-category h4 {
+        font-size: 1.15rem;
+    }
+
+    .course-category ul, .exp-date {
+        font-size: 1.05rem;
     }
 }
 
@@ -1059,20 +1165,13 @@ body.dark-mode .dir-logo {
     /* Reduce image sizes on small mobile */
     .ud-logo-header {
         width: 50px;
-        margin-right: -8px; /* Move UD logo more to the left */
     }
 
     .exp-logo {
-        width: 40px;
+        width: 32px;
     }
 
     .dir-logo {
         width: 55px;
-    }
-
-    /* Disable all hover effects and animations on very small mobile to improve performance */
-    * {
-        transition: none !important;
-        animation: none !important;
     }
 }

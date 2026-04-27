@@ -207,9 +207,14 @@ function updateHexagonCount() {
     if (!container) return;
 
     let targetCount = 150;
+    
+    // Increase limits for large/ultrawide displays
+    if (window.innerWidth >= 2560) targetCount = 350; 
+    else if (window.innerWidth >= 1920) targetCount = 250; 
+    
     if (window.innerWidth <= 1024) targetCount = 100; // Reduced for smaller desktop/tablet landscape
     if (window.innerWidth <= 768) targetCount = 50;  // Reduced for tablets and below
-    if (window.innerWidth <= 480) targetCount = 0;   // No hexagons for mobile
+    if (window.innerWidth <= 480) targetCount = 25;  // Enabled a balanced amount of hexagons for mobile
 
     const currentHexagons = container.querySelectorAll('.hexagon');
     const currentCount = currentHexagons.length;
