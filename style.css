@@ -363,14 +363,15 @@ body {
 /* Experience Brand inside Dropdown */
 .exp-brand {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 15px;
     margin-bottom: 0; /* Reduced space between brand and role title */
+    flex-wrap: wrap;
 }
 
 .exp-logo {
-    width: 50px; /* Slightly minimized to better match the visual height of DIR Lab */
-    margin-left: 10px; /* Pushed slightly to the right */
+    width: 80px; /* Increased size for better visibility */
+    margin-left: 0px; /* Positioned to the left */
     height: auto;
     border-radius: 8px;
 }
@@ -379,6 +380,12 @@ body {
 .dir-logo {
     width: 90px;
     margin-left: 0; /* Prevents the DIR Lab logo from also moving right */
+}
+
+/* SafeCircle logo styling */
+.exp-brand img[alt="SafeCircle Logo"] {
+    width: 140px;
+    margin-left: -10px; /* Move it further to the left */
 }
 
 .exp-brand h3 {
@@ -907,6 +914,7 @@ body.dark-mode .dir-logo {
     .course-category ul, .exp-date { font-size: 1.2rem; }
     .ud-logo-header { width: 110px; }
     .exp-logo { width: 65px; }
+    .exp-brand img[alt="SafeCircle Logo"] { width: 130px; }
     .dir-logo { width: 120px; }
 }
 
@@ -932,6 +940,7 @@ body.dark-mode .dir-logo {
     .course-category ul, .exp-date { font-size: 1.5rem; }
     .ud-logo-header { width: 140px; }
     .exp-logo { width: 80px; }
+    .exp-brand img[alt="SafeCircle Logo"] { width: 180px; }
     .dir-logo { width: 150px; }
 }
 
@@ -1141,6 +1150,10 @@ body.dark-mode .dir-logo {
 
     .exp-logo {
         width: 38px;
+    }
+
+    .exp-brand img[alt="SafeCircle Logo"] {
+        width: 95px;
     }
 
     .dir-logo {
