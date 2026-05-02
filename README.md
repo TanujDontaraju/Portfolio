@@ -20,6 +20,6 @@ My personal portfolio website! I am an AI/ML Engineer studying at the University
 
 ## 📫 Contact
 
-*   **LinkedIn**: in/tanujdontaraju
-*   **GitHub**: TanujDontaraju
+*   **LinkedIn**: [in/tanujdontaraju](https://www.linkedin.com/in/tanujdontaraju/)
+*   **GitHub**: [TanujDontaraju](https://github.com/TanujDontaraju)
 *   **Email**: tanujdontaraju@gmail.com
