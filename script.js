@@ -1,4 +1,3 @@
-// Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -12,7 +11,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for scroll animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
@@ -38,13 +36,11 @@ function getAnimationForElement(element) {
     return 'fadeIn 0.8s ease forwards';
 }
 
-// Observe all sections
 document.querySelectorAll('section h2, .project-card, .skill-category').forEach(element => {
     element.style.opacity = '0';
     observer.observe(element);
 });
 
-// Parallax effect on hero section
 window.addEventListener('scroll', () => {
     const hero = document.querySelector('.hero');
     const scrollY = window.scrollY;
@@ -53,7 +49,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Add ripple effect to buttons
 document.querySelectorAll('.cta-button, .contact-links a').forEach(button => {
     button.addEventListener('click', function(e) {
         const ripple = document.createElement('span');
@@ -73,7 +68,6 @@ document.querySelectorAll('.cta-button, .contact-links a').forEach(button => {
     });
 });
 
-// Mouse follow animation on hover for project cards
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -94,7 +88,6 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
-// Animated counter for stats (if needed in future)
 function animateCounter(element, target, duration = 2000) {
     let current = 0;
     const increment = target / (duration / 16);
@@ -110,7 +103,6 @@ function animateCounter(element, target, duration = 2000) {
     }, 16);
 }
 
-// Add active state to nav links on scroll
 window.addEventListener('scroll', () => {
     let current = '';
     const sections = document.querySelectorAll('section');
@@ -133,7 +125,6 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Floating animation for elements
 function addFloatingAnimation() {
     const style = document.createElement('style');
     style.textContent = `
@@ -182,21 +173,20 @@ function addFloatingAnimation() {
 
 addFloatingAnimation();
 
-// Helper to create a single hexagon
 function createHexagon() {
     const hex = document.createElement('div');
     hex.className = 'hexagon';
 
-    const size = Math.random() * 60 + 20; // Random size between 20px and 80px
-    const left = Math.random() * 100; // Random horizontal position
-    const duration = Math.random() * 15 + 10; // Random speed between 10s and 25s
+    const size = Math.random() * 60 + 20;
+    const left = Math.random() * 100;
+    const duration = Math.random() * 15 + 10;
     const delay = Math.random() * 20;
 
     hex.style.width = `${size}px`;
-    hex.style.height = `${size * 1.15}px`; // True hexagon height ratio
+    hex.style.height = `${size * 1.15}px`;
     hex.style.left = `${left}%`;
     hex.style.animationDuration = `${duration}s`;
-    hex.style.animationDelay = `-${delay}s`; // Negative delay so some start already on screen
+    hex.style.animationDelay = `-${delay}s`;
     
     return hex;
 }
@@ -207,25 +197,22 @@ function updateHexagonCount() {
     if (!container) return;
 
     let targetCount = 150;
-    
-    // Increase limits for large/ultrawide displays
+
     if (window.innerWidth >= 2560) targetCount = 350; 
     else if (window.innerWidth >= 1920) targetCount = 250; 
     
-    if (window.innerWidth <= 1024) targetCount = 100; // Reduced for smaller desktop/tablet landscape
-    if (window.innerWidth <= 768) targetCount = 50;  // Reduced for tablets and below
-    if (window.innerWidth <= 480) targetCount = 25;  // Enabled a balanced amount of hexagons for mobile
+    if (window.innerWidth <= 1024) targetCount = 100;
+    if (window.innerWidth <= 768) targetCount = 50;
+    if (window.innerWidth <= 480) targetCount = 25;
 
     const currentHexagons = container.querySelectorAll('.hexagon');
     const currentCount = currentHexagons.length;
 
     if (currentCount < targetCount) {
-        // Instantly add more hexagons
         for (let i = 0; i < (targetCount - currentCount); i++) {
             container.appendChild(createHexagon());
         }
     } else if (currentCount > targetCount) {
-        // Instantly remove extra hexagons
         for (let i = 0; i < (currentCount - targetCount); i++) {
             if (currentHexagons[i]) {
                 container.removeChild(currentHexagons[i]);
@@ -234,7 +221,6 @@ function updateHexagonCount() {
     }
 }
 
-// Hexagon background animation
 function addHexagonBackground() {
     const style = document.createElement('style');
     style.textContent = `
@@ -244,13 +230,13 @@ function addHexagonBackground() {
             left: 0;
             width: 100vw;
             height: 130vh;
-            z-index: 9999; /* Boost extremely high to guarantee it shows above all sections */
+            z-index: 9999;
             overflow: hidden;
             pointer-events: none;
         }
         .hexagon {
             position: absolute;
-            background-color: rgba(50, 50, 50, 0.2); /* Black greyish color */
+            background-color: rgba(50, 50, 50, 0.2);
             -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             bottom: -150px;
@@ -282,47 +268,37 @@ function addHexagonBackground() {
     container.className = 'hexagon-container';
     document.body.prepend(container);
 
-    // Initial population based on current screen size
     updateHexagonCount();
 
-    // Adjust counts instantly when the window is resized
-    // A tiny timeout (debounce) ensures smooth performance during drag resizing
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(updateHexagonCount, 50); // fast 50ms check
+        resizeTimeout = setTimeout(updateHexagonCount, 50);
     });
 }
 
-// Ensure the page is ready before adding elements to the body
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', addHexagonBackground);
 } else {
     addHexagonBackground();
 }
 
-// Page load animation
 window.addEventListener('load', () => {
     document.body.style.animation = 'fadeIn 0.5s ease-in';
 });
 
-// Smooth Dropdown Animation for opening and closing
 document.querySelectorAll('.dropdown summary').forEach(summary => {
     summary.addEventListener('click', function(e) {
-        e.preventDefault(); // Stop the browser from instantly snapping open/closed
+        e.preventDefault();
         const details = this.parentElement;
 
         if (details.hasAttribute('open')) {
-            // Start closing animation
             details.classList.remove('is-active');
-            // Wait for 0.4s transition to finish before actually hiding the element
             setTimeout(() => {
                 details.removeAttribute('open');
             }, 400); 
         } else {
-            // Open the element so it renders on the screen
             details.setAttribute('open', '');
-            // Add the active class a split second later to trigger the CSS slide-down
             setTimeout(() => {
                 details.classList.add('is-active');
             }, 10);
@@ -330,7 +306,6 @@ document.querySelectorAll('.dropdown summary').forEach(summary => {
     });
 });
 
-// Pause/Play Hexagon Animation
 const pausePlayBtn = document.getElementById('pause-play-btn');
 if (pausePlayBtn) {
     pausePlayBtn.addEventListener('click', () => {
@@ -339,7 +314,6 @@ if (pausePlayBtn) {
         const miniIcon = document.getElementById('mini-pause-play');
         if (hexContainer) {
             hexContainer.classList.toggle('paused');
-            // Switch between pause and play icons
             if (hexContainer.classList.contains('paused')) {
                 icon.classList.remove('fa-pause');
                 icon.classList.add('fa-play');
@@ -353,7 +327,6 @@ if (pausePlayBtn) {
     });
 }
 
-// Dark Mode Toggle
 const darkModeBtn = document.getElementById('dark-mode-btn');
 if (darkModeBtn) {
     darkModeBtn.addEventListener('click', () => {
@@ -372,7 +345,6 @@ if (darkModeBtn) {
     });
 }
 
-// Direction Toggle
 const directionBtn = document.getElementById('direction-btn');
 if (directionBtn) {
     directionBtn.addEventListener('click', () => {
@@ -394,11 +366,10 @@ if (directionBtn) {
     });
 }
 
-// Folder Widget Toggle
 const folderTrigger = document.getElementById('folder-trigger');
 if (folderTrigger) {
     folderTrigger.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent clicks from immediately bubbling up and closing it
+        e.stopPropagation();
         const folderContent = document.getElementById('folder-content');
         if (folderContent) {
             folderContent.classList.toggle('show');
@@ -406,7 +377,6 @@ if (folderTrigger) {
     });
 }
 
-// Close folder when clicking outside of it
 document.addEventListener('click', (e) => {
     const folderContent = document.getElementById('folder-content');
     const folderWidget = document.querySelector('.folder-widget');
