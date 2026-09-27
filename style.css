@@ -422,6 +422,12 @@ body {
     transform: scale(1.1);
 }
 
+.project-link-icon {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
 .logo {
     display: none;
 }
@@ -824,7 +830,6 @@ body.dark-mode .ud-logo-header,
 body.dark-mode .dir-logo {
     filter: brightness(0) invert(1);
 }
-
 @keyframes fadeInUp {
     from {
         opacity: 0;
